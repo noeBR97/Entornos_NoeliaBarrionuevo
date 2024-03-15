@@ -17,6 +17,7 @@ fun main(args: Array<String>) {
     println(Arrays.toString(sumaFilas))
     println("La suma de las columnas es")
     println(Arrays.toString(sumaColum))
+    println("La suma total de todos los valores es: ${sumarMatriz(matriz)}")
 
 
 }
@@ -55,6 +56,16 @@ fun sumaColumnas (m:Array<Array<Int>>, sumaColumnas:Array<Int>){
         fila = 0
         columna++
     }
+}
+
+fun sumarMatriz(matriz: Array<Array<Int>>): Int {
+    var suma = 0
+    for (fila in matriz) {
+        for (valor in fila) {
+            suma += valor
+        }
+    }
+    return suma
 }
 
 
