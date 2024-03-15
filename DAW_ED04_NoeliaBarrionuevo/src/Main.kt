@@ -2,30 +2,17 @@ import java.util.*
 import kotlin.random.Random
 
 fun main(args: Array<String>) {
-    var m = Array(4) { Array<Int>(4) { Random.nextInt(1, 9)} }
-    var sumaFilas = Array(m.size){0}
-    var sumaColum = Array(m[0].size){0}
+    var matriz = Array(4) { Array<Int>(4) { Random.nextInt(1, 9)} }
+    var sumaFilas = Array(matriz.size){0}
+    var sumaColum = Array(matriz[0].size){0}
 
+    imprimirMatriz(matriz)
+    var fila: Int = 0
+    var columna: Int = 0
 
-    for (f in m.indices){
-        for (c in m[f].indices){
-            print("${m[f][c]} ")
-        }
-        println()
-    }
-    var f: Int = 0
-    var c: Int = 0
+    sumarFilas(fila, matriz, columna, sumaFilas)
 
-    while (f < m.size){
-        while (c < m[0].size){
-            sumaFilas[f] += m[f][c]
-            c++
-        }
-        c = 0
-        f++
-    }
-
-    sumar2(m,sumaColum)
+    sumaColumnas(matriz,sumaColum)
     println("La suma de las filas es")
     println(Arrays.toString(sumaFilas))
     println("La suma de las columnas es")
@@ -34,21 +21,39 @@ fun main(args: Array<String>) {
 
 }
 
-
-
-
-
-fun sumar2 (m:Array<Array<Int>>, sumaColumnas:Array<Int>){
-    var f: Int = 0
-    var c: Int = 0
-
-    while (c < m.size){
-        while (f < m[0].size){
-            sumaColumnas[c] += m[f][c]
-            f++
+private fun imprimirMatriz(matriz: Array<Array<Int>>) {
+    for (f in matriz.indices) {
+        for (c in matriz[f].indices) {
+            print("${matriz[f][c]} ")
         }
-        f = 0
-        c++
+        println()
+    }
+}
+
+private fun sumarFilas(f: Int, m: Array<Array<Int>>, c: Int, sumaFilas: Array<Int>) {
+    var fila = f
+    var columna = c
+    while (fila < m.size) {
+        while (columna < m[0].size) {
+            sumaFilas[fila] += m[fila][columna]
+            columna++
+        }
+        columna = 0
+        fila++
+    }
+}
+
+fun sumaColumnas (m:Array<Array<Int>>, sumaColumnas:Array<Int>){
+    var fila: Int = 0
+    var columna: Int = 0
+
+    while (columna < m.size){
+        while (fila < m[0].size){
+            sumaColumnas[columna] += m[fila][columna]
+            fila++
+        }
+        fila = 0
+        columna++
     }
 }
 
